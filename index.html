@@ -1,0 +1,141 @@
+<html>
+	<head>
+		<!-- CSS TAGS -->
+		<link rel="stylesheet" href="./styles.css" />	
+	</head>
+	<body onload="gameStart()">
+		<div class = "headerBox">
+			<div class="childheaderBox" style="float: left;">
+				Buyukanne Oyunu
+			</div>
+			<div  class="childheaderBox" style="float: right;">
+				<button class="button" id="startButton" onclick="restart()">Restart</section>
+			</div>
+		</div>
+	 
+		<div class = game> 
+			<div id = mainBoard>
+				<div>
+					<div class= "skoreBoard mainBoard" style="float: right;"></div>
+					<div class= "gameBoard mainBoard" style="float: left;">
+						<table>
+							<tr>
+								<th ></th>
+								<th ></th>
+								<th ></th>
+								<th ></th>
+								<th ></th>
+								<th ></th>
+								<th ></th>
+								<th ></th>
+								<th ></th>
+								<th ></th>
+							</tr>
+							<tr class = "row" id = "r1">
+								<td class="square"id=sq11><div class = "circle"  id=c11 ></div></td>
+								<td class="square"id=sq12><div class = "circle"  id=c12 ></div></td>
+								<td class="square"id=sq13><div class = "circle"  id=c13 ></div></td>
+								<td class="square"id=sq14><div class = "circle"  id=c14 ></div></td>
+								<td class="square"id=sq15><div class = "circle"  id=c15 ></div></td>
+								<td class="square"id=sq16><div class = "circle"  id=c16 ></div></td>
+								<td class="square"id=sq17><div class = "circle"  id=c17 ></div></td>
+								<td class="square"id=sq18><div class = "circle"  id=c18 ></div></td>
+								<td class="square"id=sq19><div class = "circle"  id=c19 ></div></td>
+							</tr>
+							<tr class = "row" id = "r2">
+								<td class="square"id=sq21><div class = "circle"  id=c21 ></div></td>
+								<td class="square"id=sq22><div class = "circle"  id=c22 ></div></td>
+								<td class="square"id=sq23><div class = "circle"  id=c23 ></div></td>
+								<td class="square"id=sq24><div class = "circle"  id=c24 ></div></td>
+								<td class="square"id=sq25><div class = "circle"  id=c25 ></div></td>
+								<td class="square"id=sq26><div class = "circle"  id=c26 ></div></td>
+								<td class="square"id=sq27><div class = "circle"  id=c27 ></div></td>
+								<td class="square"id=sq28><div class = "circle"  id=c28 ></div></td>
+								<td class="square"id=sq29><div class = "circle"  id=c29 ></div></td>
+							</tr>
+							<tr class = "row" id = "r3">
+								<td class="square"id=sq31><div class = "circle"  id=c31 ></div></td>
+								<td class="square"id=sq32><div class = "circle"  id=c32 ></div></td>
+								<td class="square"id=sq33><div class = "circle"  id=c33 ></div></td>
+								<td class="square"id=sq34><div class = "circle"  id=c34 ></div></td>
+								<td class="square"id=sq35><div class = "circle"  id=c35 ></div></td>
+								<td class="square"id=sq36><div class = "circle"  id=c36 ></div></td>
+								<td class="square"id=sq37><div class = "circle"  id=c37 ></div></td>
+								<td class="square"id=sq38><div class = "circle"  id=c38 ></div></td>
+								<td class="square"id=sq39><div class = "circle"  id=c39 ></div></td>
+							</tr>
+							<tr class = "row" id = "r4">
+								<td class="square"id=sq41><div class = "circle"  id=c41 ></div></td>
+								<td class="square"id=sq42><div class = "circle"  id=c42 ></div></td>
+								<td class="square"id=sq43><div class = "circle"  id=c43 ></div></td>
+								<td class="square"id=sq44><div class = "circle"  id=c44 ></div></td>
+								<td class="square"id=sq45><div class = "circle"  id=c45 ></div></td>
+								<td class="square"id=sq46><div class = "circle"  id=c46 ></div></td>
+								<td class="square"id=sq47><div class = "circle"  id=c47 ></div></td>
+								<td class="square"id=sq48><div class = "circle"  id=c48 ></div></td>
+								<td class="square"id=sq49><div class = "circle"  id=c49 ></div></td>
+							</tr>
+							<tr class = "row" id = "r5">
+								<td class="square"id=sq51><div class = "circle"  id=c51 ></div></td>
+								<td class="square"id=sq52><div class = "circle"  id=c52 ></div></td>
+								<td class="square"id=sq53><div class = "circle"  id=c53 ></div></td>
+								<td class="square"id=sq54><div class = "circle"  id=c54 ></div></td>
+								<td class="square"id=sq55><div class = "circle"  id=c55 ></div></td>
+								<td class="square"id=sq56><div class = "circle"  id=c56 ></div></td>
+								<td class="square"id=sq57><div class = "circle"  id=c57 ></div></td>
+								<td class="square"id=sq58><div class = "circle"  id=c58 ></div></td>
+								<td class="square"id=sq59><div class = "circle"  id=c59 ></div></td>
+							</tr>
+							<tr class = "row" id = "r6">
+								<td class="square"id=sq61><div class = "circle"  id=c61 ></div></td>
+								<td class="square"id=sq62><div class = "circle"  id=c62 ></div></td>
+								<td class="square"id=sq63><div class = "circle"  id=c63 ></div></td>
+								<td class="square"id=sq64><div class = "circle"  id=c64 ></div></td>
+								<td class="square"id=sq65><div class = "circle"  id=c65 ></div></td>
+								<td class="square"id=sq66><div class = "circle"  id=c66 ></div></td>
+								<td class="square"id=sq67><div class = "circle"  id=c67 ></div></td>
+								<td class="square"id=sq68><div class = "circle"  id=c68 ></div></td>
+								<td class="square"id=sq69><div class = "circle"  id=c69 ></div></td>
+							</tr>
+							<tr class = "row" id = "r7">
+								<td class="square"id=sq71><div class = "circle"  id=c71 ></div></td>
+								<td class="square"id=sq72><div class = "circle"  id=c72 ></div></td>
+								<td class="square"id=sq73><div class = "circle"  id=c73 ></div></td>
+								<td class="square"id=sq74><div class = "circle"  id=c74 ></div></td>
+								<td class="square"id=sq75><div class = "circle"  id=c75 ></div></td>
+								<td class="square"id=sq76><div class = "circle"  id=c76 ></div></td>
+								<td class="square"id=sq77><div class = "circle"  id=c77 ></div></td>
+								<td class="square"id=sq78><div class = "circle"  id=c78 ></div></td>
+								<td class="square"id=sq79><div class = "circle"  id=c79 ></div></td>
+							</tr>
+							<tr class = "row" id = "r8">
+								<td class="square"id=sq81><div class = "circle"  id=c81 ></div></td>
+								<td class="square"id=sq82><div class = "circle"  id=c82 ></div></td>
+								<td class="square"id=sq83><div class = "circle"  id=c83 ></div></td>
+								<td class="square"id=sq84><div class = "circle"  id=c84 ></div></td>
+								<td class="square"id=sq85><div class = "circle"  id=c85 ></div></td>
+								<td class="square"id=sq86><div class = "circle"  id=c86 ></div></td>
+								<td class="square"id=sq87><div class = "circle"  id=c87 ></div></td>
+								<td class="square"id=sq88><div class = "circle"  id=c88 ></div></td>
+								<td class="square"id=sq89><div class = "circle"  id=c89 ></div></td>
+							</tr>
+							<tr class = "row" id = "r9">
+								<td class="square"id=sq91><div class = "circle"  id=c91 ></div></td>
+								<td class="square"id=sq92><div class = "circle"  id=c92 ></div></td>
+								<td class="square"id=sq93><div class = "circle"  id=c93 ></div></td>
+								<td class="square"id=sq94><div class = "circle"  id=c94 ></div></td>
+								<td class="square"id=sq95><div class = "circle"  id=c95 ></div></td>
+								<td class="square"id=sq96><div class = "circle"  id=c96 ></div></td>
+								<td class="square"id=sq97><div class = "circle"  id=c97 ></div></td>
+								<td class="square"id=sq98><div class = "circle"  id=c98 ></div></td>
+								<td class="square"id=sq99><div class = "circle"  id=c99 ></div></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="./script.js">
+		</script>
+	</body>
+</html>
