@@ -10,15 +10,30 @@
 	background-color: grey;
 }
 
-.headerBox{
-	height: 8vh;
+
+.buttonBox{
+	/* height: 8vh;
 	width:  90vw;
-	color: rgb(20, 3, 32);
+	color: rgb(148, 146, 150);
 	border: 2px groove rgb(157, 165, 165) ;	
-	background-color: rgb(236, 189, 189);
+	background-color: rgb(236, 189, 189); */
 	font-style: italic;
 	border-radius: 150px;
 	font-size: 150%;
+	/* box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 200px 0 rgba(0, 0, 0, 0.10); */
+}
+
+
+.headerBox{
+	/* height: 8vh; */
+	/* width: 40vw; */
+	color: rgb(148, 146, 150);
+	border: 2px groove rgb(151, 65, 133) ;	
+	background-color: rgb(236, 189, 189);
+	font-style: italic;
+	border-radius: 150px;
+	display: inline-flex;
+	font-size: 6vh;
 	/* box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 200px 0 rgba(0, 0, 0, 0.10); */
 }
 
@@ -35,13 +50,13 @@
 	border: none;
 	border-radius: 150px;
 	box-shadow: 5px 5px rgb(54, 53, 53);
-  }
+}
   
-  .button:hover {
+.button:hover {
 	  background-color:rgb(218, 153, 153);
 	  color: #197a1c(138, 28, 28);}
   
-  .button:active {
+.button:active {
 	background-color:  rgb(180, 125, 125);
 	box-shadow: 1px 1px rgb(70, 67, 67);
 	transform: translateY(3px);

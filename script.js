@@ -3,6 +3,7 @@ const NORTH = "north";
 const SOUTH = "south";
 const RIGHT = "right";
 const LEFT = "left";
+const HIGHLIGHTING_COUNT = 3;
 const SELECTED_SHADOW =  "inset 0 -5px 15px rgba(255,255,255,0.9), inset -20px -10px 40px rgba(34, 32, 32, 0.4), 0 0 1px #000";
 const UN_SELECTED_SHADOW = "inset 0 -5px 15px rgba(255,255,255,0.4), inset -20px -10px 40px rgba(33, 31, 31, 0.5), 0 0 1px #000";
 const NOT_EXISTING = "inset 0 0px 0px rgba(255,255,255,0.0), inset -20px -10px 40px rgba(0, 0, 0, 0.0), 0 0 0px #000";	
@@ -14,8 +15,6 @@ var listOfBallsWillBeDestroyed = new Set();
 var selectedBallElement = null;
 var selectedBallColor = EMPTY;
 var trackedIdMap = new Map();
-
-
 
 document.addEventListener("click",clickElement());
 
@@ -35,7 +34,6 @@ function gameStart(){
 	console.log("emptySquares->",MAP_OF_EMPTY_SQUARES);
 	sendRandomBall(3);
 }
-
 
 function clickElement() {
 	window.onclick = currentClickedElement =>{
@@ -141,8 +139,12 @@ function sendRandomBall(a){
 	if(!removeCompletedSeries()){
 		for (let index = 0; index < a; index++) {
 			let color = COLOR_LIST[getRandomInt(6)];
-			let entry = getRandomEmptySquareElement();
-			createBall(entry[0],color);
+			let emptyBallPosition = getRandomEmptySquareElement();
+			if(emptyBallPosition==null) {
+				endgame();
+				break;
+			}
+			createBall(emptyBallPosition[0],color);
 		}
 		removeCompletedSeries();
 	}
@@ -158,17 +160,17 @@ function getRandomInt(max) {
 }
 
 function createBall(id,color){
-	let element = document.getElementById(id);
+	let element = getBallElement(id);
 	element.style.backgroundColor = color;
 	element.style.boxShadow = UN_SELECTED_SHADOW;
 	selectedBallElement = null;
-	MAP_BALLS_ON_BOARD.set(id,document.getElementById(id));
+	MAP_BALLS_ON_BOARD.set(id,element);
 	MAP_OF_EMPTY_SQUARES.delete(id);
 	console.log("ball created");
 }
 
 function removeBall(id){
-	let element = document.getElementById(id);
+	let element = getBallElement(id);
 	element.style.boxShadow=NOT_EXISTING;
 	element.style.backgroundColor = EMPTY;
 	MAP_OF_EMPTY_SQUARES.set(id,element);
@@ -267,7 +269,6 @@ function getNumFromElementId(id){
 	return parseInt(id.substring(1));
 }
 
-
 function getNeigbourId(direction, id){
 	let horizontalId = getHorizontalNum(getNumFromElementId(id));
 	let verticalId= getVerticalNum(getNumFromElementId(id));
@@ -324,12 +325,16 @@ function updateScore (a){
 	document.getElementsByClassName("SkoreBoard")[0].innerText = (score+=(point));
 }
 
-function getElementColor(e){
-	return e.style.backgroundColor;
+function getElementColor(element){
+	return element.style.backgroundColor;
 }
 
 function getElementId(e){
 	return e.id;
+}
+
+function getBallElement(id){
+	return document.getElementById(id);
 }
 
 function plainCheck(){
@@ -405,7 +410,6 @@ function crosslineCheck(){
 	
 }
 
-
 function createBallToNull(e){
     if(trackedIdMap.get(e)==null){
         return null;}
@@ -413,6 +417,46 @@ function createBallToNull(e){
     createBallToNull(trackedIdMap.get(e));
 }
 
-// ball remove is removing 18 ball for 6 ball when balls became destroyable
+function changeBallColor(id,color){
+	let element = getBallElement(id);
+	element.style.backgroundColor = color;
+	console.log("color changed to ",color,"for",id);
+}
+
+function highlightBall(elementId){
+	let i = 1000;
+	//  HIGHLIGHTING_COUNT;
+	let originalColor=getElementColor(getBallElement(elementId)); 
+	let num =   parseInt(originalColor.substring(originalColor.indexOf('(')+1,originalColor.indexOf(',')));
+	
+	// wait(2000);
+	while(i-->0){
+		let num1 = num++;
+		let color = originalColor
+				.substring(0,originalColor.indexOf('(')+1)
+				+num1
+				+originalColor.substring(originalColor.indexOf(','));
+		changeBallColor(elementId,color);
+		// changeBallColor(elementId,originalColor);
+		console.log(originalColor,"color higligted to",color );
+	}
+}
+
+function wait(timeout) {
+	var 	counter= 0
+		, 	start = new Date().getTime()
+		, 	end = 0;
+		console.log("waiting for ", timeout);
+	while (counter < timeout) {
+		end = new Date().getTime();
+		counter = end - start;
+	}
+}
+
+function endGame(){
+	document.getElementsByClassName("headerBox").backgroundColor="red";
+	document.getElementsByClassName("headerBox").innerText="GAME END";
+}
+
 // not finding the shortest way 
 
