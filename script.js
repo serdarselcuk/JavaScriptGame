@@ -1,3 +1,4 @@
+// @serdarselcuk
 const EMPTY = "white";
 const NORTH = "north";
 const SOUTH = "south";
@@ -5,7 +6,7 @@ const RIGHT = "right";
 const LEFT = "left";
 const HIGHLIGHTING_COUNT = 3;
 const SELECTED_SHADOW =  "inset 0 -5px 15px rgba(255,255,255,0.9), inset -20px -10px 40px rgba(34, 32, 32, 0.4), 0 0 1px #000";
-const UN_SELECTED_SHADOW = "inset 0 -5px 15px rgba(255,255,255,0.4), inset -20px -10px 40px rgba(33, 31, 31, 0.5), 0 0 1px #000";
+const UN_SELECTED_SHADOW = 	"inset 0 -5px 15px rgba(255,255,255,0.4), inset -20px -10px 40px rgba(33, 31, 31, 0.5), 0 0 1px #000";
 const NOT_EXISTING = "inset 0 0px 0px rgba(255,255,255,0.0), inset -20px -10px 40px rgba(0, 0, 0, 0.0), 0 0 0px #000";	
 const COLOR_LIST = ["FFCCCC","FFFFCC","CCFFFF","CCFFCC","CCCCFF","FFCCE5"];
 const MAP_BALLS_ON_BOARD = new Map();
