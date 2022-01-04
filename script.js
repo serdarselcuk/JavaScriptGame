@@ -22,6 +22,7 @@ document.addEventListener("click",clickElement());
 function restart(){
 	location.reload();
 	gameStart();
+	
 }
 
 function gameStart(){
