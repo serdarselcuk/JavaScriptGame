@@ -8,7 +8,7 @@ const HIGHLIGHTING_COUNT = 3;
 const SELECTED_SHADOW =  "inset 0 -5px 15px rgba(255,255,255,0.9), inset -20px -10px 40px rgba(34, 32, 32, 0.4), 0 0 1px #000";
 const UN_SELECTED_SHADOW = 	"inset 0 -5px 15px rgba(255,255,255,0.4), inset -20px -10px 40px rgba(33, 31, 31, 0.5), 0 0 1px #000";
 const NOT_EXISTING = "inset 0 0px 0px rgba(255,255,255,0.0), inset -20px -10px 40px rgba(0, 0, 0, 0.0), 0 0 0px #000";	
-const COLOR_LIST = ["ffd8d8","FFFFCC","CCFFFF","b8ffb8","CCCCFF","ffc4e1"];
+const COLOR_LIST = ["7F6C6C","FFFFCC","CCFFFF","b8ffb8","CCCCFF","ffc4e1"];
 const MAP_BALLS_ON_BOARD = new Map();
 const MAP_OF_EMPTY_SQUARES = new Map();
 var score = 0;
@@ -16,6 +16,9 @@ var listOfBallsWillBeDestroyed = new Set();
 var selectedBallElement = null;
 var selectedBallColor = EMPTY;
 var trackedIdMap = new Map();
+// animation: bounce 0.5s;
+// animation-direction: alternate;
+// animation-iteration-count: infinite;
 
 document.addEventListener("click",clickElement());
 
@@ -313,18 +316,26 @@ function removeCompletedSeries(){
 	return removedCount>0;
 }
 
-function updateScore (a){
+function calculateScore(ballCount){
 	let point;
-	if(a==5) point =  a*10;
-	else if(a<5) point =  0;
+	if(ballCount==5) point =  ballCount*10;
+	else if(ballCount<5) point =  0;
 	else{
 		point = 50;
-		let dif = a-5;
+		let dif = ballCount-5;
 		while(dif>0){
 			point += (10*dif--);
 		}
 	}
-	document.getElementsByClassName("SkoreBoard")[0].innerText = (score+=(point));
+	return point;
+}
+
+function updateScore (ballCount){
+	let point = calculateScore(ballCount);
+	let scoreElement = document.getElementsByClassName("SkoreBoard")[0];
+	scoreElement.innerText = (score+=(point));
+	scoreElement.style.height =( score/100);
+	scoreElement.style.top = -(score/100);
 }
 
 function getElementColor(element){
