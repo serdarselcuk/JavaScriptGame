@@ -1,0 +1,12 @@
+{
+    "name": "serdarselcuk",
+    "description": "game for enjoy",
+    "version": "0.0.1",
+    "devDependencies": {
+      "script": "0.1.4"
+    },
+    "scripts": {
+      "prepare": "./script.js"
+    },
+    "main": "./script.js"
+  }
