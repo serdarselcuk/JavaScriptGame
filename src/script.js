@@ -17,6 +17,7 @@ var listOfBallsWillBeDestroyed = new Set();
 var selectedBallElement = null;
 var selectedBallColor = EMPTY;
 var trackedIdMap = new Map();
+var ftrBalls = [];
 
 // animation: bounce 0.5s;
 // animation-direction: alternate;
@@ -37,6 +38,7 @@ function gameStart(){
 		}
 	}
 	console.log("emptySquares->",MAP_OF_EMPTY_SQUARES);
+	setFutureBalls()
 	sendRandomBall(3);
 }
 
@@ -86,7 +88,11 @@ function moveBall(targetElementId){
 		createBall(targetElementId,selectedBallColor);
 		removeBall(selectedBallElementId);
 		console.log("ball moved successfully:",selectedBallElementId," to ",targetElementId);
-		sendRandomBall(3);
+		if(MAP_OF_EMPTY_SQUARES.size>2){
+			sendRandomBall(3);
+		}else{
+			endGame();
+		}
 	}else{
 		console.log("there is no way!",selectedBallElementId +"->"+ targetElementId,"\n",trackedIdMap);
 	}
@@ -140,16 +146,38 @@ function selectBall(e){
 	console.log("ball selected",e.target.id);	
 }
 
+function getRandomColor(){
+	return COLOR_LIST[getRandomInt(6)];
+}
+
+function setFutureBalls(){
+	for (let index = 1; index <= 3; index++) {
+		ftrBalls.push(getRandomColor());
+	}
+	for (const color in ftrBalls) {
+		if (Object.hasOwnProperty.call(ftrBalls, color)) {
+			createBall('fb10'+ftrBalls[color]);
+		}else{
+			createBall('fb10'+'black');
+		}
+	}
+	
+}
+
+function switchFutureBalls(color){
+	return ftrBalls.shift(color);
+}
+
 function sendRandomBall(a){
 	if(!removeCompletedSeries()){
 		for (let index = 0; index < a; index++) {
-			let color = COLOR_LIST[getRandomInt(6)];
 			let emptyBallPosition = getRandomEmptySquareElement();
 			if(emptyBallPosition==null) {
 				endgame();
 				break;
 			}
-			createBall(emptyBallPosition[0],color);
+			createBall(emptyBallPosition,
+				switchFutureBalls(getRandomColor()));
 		}
 		removeCompletedSeries();
 	}
@@ -157,7 +185,7 @@ function sendRandomBall(a){
 
 function getRandomEmptySquareElement(){
 	let a = Array.from(MAP_OF_EMPTY_SQUARES);
-	return a[getRandomInt(MAP_OF_EMPTY_SQUARES.size)];
+	return a[getRandomInt(MAP_OF_EMPTY_SQUARES.size)][0];
 }
 
 function getRandomInt(max) {
