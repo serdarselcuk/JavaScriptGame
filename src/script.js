@@ -154,18 +154,22 @@ function setFutureBalls(){
 	for (let index = 1; index <= 3; index++) {
 		ftrBalls.push(getRandomColor());
 	}
-	for (const color in ftrBalls) {
-		if (Object.hasOwnProperty.call(ftrBalls, color)) {
-			createBall('fb10'+ftrBalls[color]);
+	showFutureBalls();
+}
+
+function showFutureBalls(){
+	for (let index = 0; index < 3; index++) {
+		if (Object.hasOwnProperty.call(ftrBalls, index)) {
+			createBall('fb10'+(index+1), ftrBalls[index]);
 		}else{
-			createBall('fb10'+'black');
+			throw new Error('future ball pool is empty');
 		}
 	}
-	
 }
 
 function switchFutureBalls(color){
-	return ftrBalls.shift(color);
+	ftrBalls.push(color);
+	return ftrBalls.shift();
 }
 
 function sendRandomBall(a){
@@ -179,6 +183,7 @@ function sendRandomBall(a){
 			createBall(emptyBallPosition,
 				switchFutureBalls(getRandomColor()));
 		}
+		showFutureBalls();
 		removeCompletedSeries();
 	}
 }
