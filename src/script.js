@@ -1,6 +1,8 @@
 // @serdarselcuk
 
-const EMPTY = "white";
+const EMPTY = "ffffff";
+const BOUNCE = 'circle bouncingBall';
+const NON_BOUNCE = 'circle';
 const NORTH = "NORTH";
 const SOUTH = "SOUTH";
 const RIGHT = "RIGHT";
@@ -134,16 +136,19 @@ function horizontalDirection(from,to){
 }
 
 function deselectBall(e){
+	e.target.className =NON_BOUNCE;
 	e.target.style.boxShadow = UN_SELECTED_SHADOW;
 	selectedBallElement = null;
 	console.log("ball deselected",e.target.id);
 }
 
 function selectBall(e){
+	e.target.className =BOUNCE;
 	selectedBallColor = e.target.style.backgroundColor;
 	e.target.style.boxShadow = SELECTED_SHADOW;
 	selectedBallElement = e;
-	console.log("ball selected",e.target.id);	
+	console.log("ball selected",e.target.id);
+	e.target.className = 'circle bouncingBall';
 }
 
 function getRandomColor(){
@@ -210,10 +215,12 @@ function createBall(id,color){
 
 function removeBall(id){
 	let element = getBallElement(id);
-	element.style.boxShadow=NOT_EXISTING;
+	element.className = NON_BOUNCE;
+	element.style.boxShadow = NOT_EXISTING;
 	element.style.backgroundColor = EMPTY;
 	MAP_OF_EMPTY_SQUARES.set(id,element);
 	MAP_BALLS_ON_BOARD.delete(id);
+
 	console.log("ball removed");
 }
 
@@ -501,8 +508,9 @@ function wait(timeout) {
 }
 
 function endGame(){
-	document.getElementsByClassName("headerBox").backgroundColor="red";
-	document.getElementsByClassName("headerBox").innerText="GAME END";
+	let headerElement = document.getElementById("headerBox");
+	headerElement.style.backgroundColor = "red";
+	headerElement.innerText = "GAME OVER";
 }
 
 // not finding the shortest way 

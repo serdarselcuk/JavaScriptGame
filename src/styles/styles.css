@@ -84,14 +84,18 @@
 	box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 200px 0 rgba(0, 0, 0, 0.10);
 	}
 
+.bouncingBall {
+		animation:bounce 0.1s cubic-bezier(0.36, -0.01, 0.95, 0.22);
+		animation-direction: alternate;
+		animation-iteration-count: infinite;
+}
+
 .circle {
 	width: 8vh;
 	height:8vh;
+	align-self: center;
 	border-radius: 50%;
-	background-color:white;
-	animation:"";
-	animation-direction: alternate;
-	animation-iteration-count: infinite;
+	background-color:'ffffff00';
 }
 
 @keyframes bounce {
