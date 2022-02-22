@@ -43,7 +43,7 @@
 }
 
 
- a{ font-size: 100%;}
+a{ font-size: 100%;}
 
 
 #startButton {
@@ -91,6 +91,14 @@
 }
 
 .circle {
+	width: 8vh;
+	height:8vh;
+	align-self: center;
+	border-radius: 50%;
+	background-color:'ffffff00';
+}
+
+.circlef {
 	width: 8vh;
 	height:8vh;
 	align-self: center;
