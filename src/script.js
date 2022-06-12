@@ -32,16 +32,17 @@ function restart(){
 }
 
 function gameStart(){
-	let array =document.getElementsByClassName("circle");
-	for (const key in array) {
-		console.log(key," ",array[key]);
-		if(array[key].id!=null){
-			MAP_OF_EMPTY_SQUARES.set(array[key].id,array[key]);
-		}
-	}
-	console.log("emptySquares->",MAP_OF_EMPTY_SQUARES);
-	setFutureBalls()
-	sendRandomBall(3);
+	location.replace("https://www.google.com/")
+	// let array =document.getElementsByClassName("circle");
+	// for (const key in array) {
+	// 	console.log(key," ",array[key]);
+	// 	if(array[key].id!=null){
+	// 		MAP_OF_EMPTY_SQUARES.set(array[key].id,array[key]);
+	// 	}
+	// }
+	// console.log("emptySquares->",MAP_OF_EMPTY_SQUARES);
+	// setFutureBalls()
+	// sendRandomBall(3);
 }
 
 function clickElement() {
